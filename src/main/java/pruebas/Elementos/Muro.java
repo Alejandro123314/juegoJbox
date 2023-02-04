@@ -4,6 +4,7 @@ import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.FixtureDef;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -26,10 +27,15 @@ public class Muro extends Entity {
 		bodyDef.position.set(x, y);
 
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(width / 2.0f, height / 2.0f);
+		shape.setAsBox(width * 2.0f, height * 2.0f);
+		
+		FixtureDef fd = new FixtureDef();
+		fd.shape = shape;
+		fd.friction = 0.5f;
 		
 		body = getGame().getWorld().getWorldF().createBody(bodyDef);
-		body.createFixture(shape, 0.0f);
+		//body.createFixture(shape, 0.0f);
+		body.createFixture(fd);
 	}
 	
 	public void render(GraphicsContext gc) {

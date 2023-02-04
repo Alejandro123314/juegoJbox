@@ -36,6 +36,7 @@ public class CuerpoPersonaje extends Entity{
 //		bd.position.set(50, 50);  
 		bd.position.set(x,y);
 		bd.type = BodyType.DYNAMIC;
+		
 
 		//define shape of the body.
 		PolygonShape box = new PolygonShape();
@@ -44,21 +45,22 @@ public class CuerpoPersonaje extends Entity{
 		
 //		box.setAsBox(x/5f, y/5f);  aqui se vuelve tamaño estandar
 
-		box.setAsBox(x/5f, y/5f); 
+		box.setAsBox(x, y); 
 		
 		//		box.m_radius = 0.5f;  
 
 		//define fixture of the body.
 		FixtureDef fd = new FixtureDef();
 		fd.shape = box;
-		fd.density = 0.5f;
-//		fd.friction = 0.3f;        
-//		fd.restitution = 0.5f;
+//		fd.density = 0.5f;
+		fd.friction = 50f;        
+//		fd.restitution = 0.2f;
 
 
 		//create the body and add fixture to it
 		bodyF = getGame().getWorld().getWorldF().createBody(bd);
 		bodyF.createFixture(fd);
+		bodyF.getLinearVelocity();
 	}
 	
 	public void render(GraphicsContext gc) {
@@ -81,6 +83,10 @@ public class CuerpoPersonaje extends Entity{
 //		System.out.println("la X es : " + x +" la Y es: " + y + "el width es: " + width + "el height es : " + height );
 		
 		
+	}
+	
+	public Body getBodyF() {
+		return bodyF;
 	}
 	
 	@Override

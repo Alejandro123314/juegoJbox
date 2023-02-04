@@ -3,7 +3,7 @@ package pruebas.Elementos;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public abstract class Entity {
+public abstract  class Entity {
 	private Game game;
 	protected float x, y;
 	protected float width, height;
